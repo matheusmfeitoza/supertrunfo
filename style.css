@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgba(128, 128, 128, 0.753);
+  color: white;
+}
+header {
+  text-align: center;
+  margin-top: 30px;
+}
+header > h1 {
+  font-size: 3.5rem;
+}
+header > h2 {
+  margin-top: 20px;
+  font-size: 1.7rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.container > h3 {
+  font-size: 2.1rem;
+  margin-bottom: 15px;
+}
+.container > p {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+.container > button {
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  border: 1px solid red;
+  margin-bottom: 10px;
+}
+.atributosBtn {
+  margin: 20px;
+}
+
+.atributoBtn {
+  font-size: 1.3rem;
+}
+input {
+  margin: 20px 10px;
+}
