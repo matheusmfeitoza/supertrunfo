@@ -60,6 +60,7 @@ function sortearCarta(){
     geraCardComponents();
 }
 function geraCardComponents(){
+    //Carta do Jogador
     let moldura = `<img src="./imgs/card-super-trunfo-transparent-ajustado.png" class="card-image">`
     let getCardJogador = document.getElementById('carta-jogador');
     getCardJogador.style.backgroundImage=`url(${cartaJogador.imagem})`
@@ -75,12 +76,50 @@ function geraCardComponents(){
         getCardJogador.style.backgroundPositionY = "50px";
         getCardJogador.style.backgroundPositionX = "10px";
     }
-
     let nomeCardJogador =`<p class="carta-subtitle -diff1"> ${cartaJogador.nome}</p>`
-    getCardJogador.innerHTML = moldura + nomeCardJogador;
+    let opcoesTexto = ''
+    let divHtml = `<div class="optionsCards">`
+    for(let atributo in cartaJogador.atributos){
+        opcoesTexto += "<input type='radio' name='atributo' value='" + atributo + "' class='teste'>" + atributo + ": " + cartaJogador.atributos[atributo] + "<br>";
+    }
+    getCardJogador.innerHTML = moldura + nomeCardJogador + divHtml + opcoesTexto + "</div>";
+
+}
 
 
+function capturaAtributoEscolhido(){
+    let getClick = document.getElementsByName('atributo');
+    for (let i = 0; i < getClick.length; i++){
+        if(getClick[i].checked){
+            return getClick[i].value;
+        }
+    }
+}   
+
+
+function jogar(){
+    let valorAtrEscolhido = capturaAtributoEscolhido();
+    let finalResult = document.querySelector('.resultadoFinal')
+    let checkClickRadio = document.getElementsByName('atributo');
+    let htmlResultado =''
+        if(cartaJogador.atributos[valorAtrEscolhido] > cartaMaquina.atributos[valorAtrEscolhido]){
+            htmlResultado = "<h2 class='resultado'> Venceu </h2>"
+        }else if (cartaJogador.atributos[valorAtrEscolhido] < cartaMaquina.atributos[valorAtrEscolhido]){
+            htmlResultado = `<h2 class="resultado"> Perdeu </h2>`
+        }
+        else{
+            htmlResultado = `<h2 class="resultado"> Empatou </h2>`
+        }
+        
+        finalResult.innerHTML = htmlResultado;
+
+        exibirResultadoMaquina();
+}
+
+function exibirResultadoMaquina(){
+    //Carta da Máquina
     let getCardMaquina = document.getElementById('carta-maquina');
+    let moldura = `<img src="./imgs/card-super-trunfo-transparent-ajustado.png" class="card-image">`
     getCardMaquina.style.backgroundImage=`url(${cartaMaquina.imagem})`
     if(window.matchMedia("(max-width:678px)").matches){
         getCardMaquina.style.backgroundRepeat = "no-repeat";
@@ -98,42 +137,10 @@ function geraCardComponents(){
     let nomeCardMaquina = `<p class="carta-subtitle -diff2">${cartaMaquina.nome}</p>`
 
     let opcoesTexto = ''
-    let divHtml = `<div class="optionsCards">`
-    for(let atributo in cartaJogador.atributos){
-        opcoesTexto += "<input type='radio' name='atributo' value='" + atributo + "' class='teste'>" + atributo + ": " + cartaJogador.atributos[atributo] + "<br>";
+    let divHtml = `<div class="optionsCardsMaquina">`
+    for(let atributo in cartaMaquina.atributos){
+        opcoesTexto += "<p name='atributo' value='" + atributo + "' class='teste'>" + atributo + ": " + cartaMaquina.atributos[atributo] + "</p><br>";
     }
     getCardMaquina.innerHTML = moldura + nomeCardMaquina + divHtml + opcoesTexto + "</div>";
-
-    
-    
-}
-
-function criaAtributoNatela(){
-    let getAtrspace = document.getElementById('addInput');
-    let opcoesTexto = '';
-  
-}
-
-function capturaAtributoEscolhido(){
-    let getClick = document.getElementsByName('atributo');
-    for (let i = 0; i < getClick.length; i++){
-        if(getClick[i].checked){
-            return getClick[i].value;
-        }
-    }
-}   
-
-
-function jogar(){
-    let valorAtrEscolhido = capturaAtributoEscolhido();
-    let checkClickRadio = document.getElementsByName('atributo');
-        if(cartaJogador.atributos[valorAtrEscolhido] > cartaMaquina.atributos[valorAtrEscolhido]){
-            alert("Você ganhou!")
-        }else if (cartaJogador.atributos[valorAtrEscolhido] < cartaMaquina.atributos[valorAtrEscolhido]){
-            alert("Você perdeu!")
-        }
-        else{
-            alert("Empatou")
-        }
 
 }

@@ -26,7 +26,7 @@ header > h2 {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .container > h3 {
@@ -83,13 +83,29 @@ input {
 }
 .optionsCards {
   position: relative;
-  top: -179px;
-  left: -310px;
+  top: -178px;
+  left: 30px;
+}
+.optionsCardsMaquina {
+  position: relative;
+  font-size: 1rem;
+  top: -172px;
+  left: 40px;
+}
+
+.resultado {
+  font-size: 2rem;
+  margin-top: 15px;
+  background-color: black;
+  color: white;
+  width: 650px;
+  text-align: center;
+  padding: 15px;
 }
 @media (max-width: 678px) {
   .wrapper {
     flex-direction: column;
-    max-height: 550px;
+    max-height: 610px;
   }
   .card-image {
     height: 250px;
@@ -107,12 +123,21 @@ input {
     font-size: 1rem;
   }
   .optionsCards {
-    left: 10px;
-    top: -390px;
+    left: 23px;
+    top: -106px;
     font-size: 0.7rem;
+  }
+  .optionsCardsMaquina {
+    position: relative;
+    font-size: 0.7rem;
+    top: -95px;
+    left: 22px;
   }
   input {
     width: 7px;
     margin: 7px 10px;
+  }
+  .resultado {
+    max-width: 200px;
   }
 }
