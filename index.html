@@ -16,10 +16,36 @@
       <div class="container">
         <h3>Vamos começar!!!!!</h3>
         <p>Clique no botão abaixo para sortear uma carta</p>
-        <button type="submit" onclick="sortearCarta()">Sortear</button>
+        <button type="button" onclick="sortearCarta()" id="btnSortear">
+          Sortear
+        </button>
         <h3>Agora escolha o seu atributo:</h3>
+        <div class="wrapper">
+          <div>
+            <div id="carta-jogador">
+              <img
+                src="./imgs/card-super-trunfo-transparent-ajustado.png"
+                alt="Carta Jogador"
+                class="card-image"
+              />
+              <h3></h3>
+            </div>
+          </div>
+          <div>
+            <div id="carta-maquina">
+              <img
+                src="./imgs/card-super-trunfo-transparent-ajustado.png"
+                alt="Carta maquina"
+                class="card-image"
+              />
+              <h3></h3>
+            </div>
+          </div>
+        </div>
         <div id="addInput" class="atributoBtn"></div>
-        <button type="submit" onclick="jogar()">Jogar</button>
+        <button type="button" onclick="jogar()" disabled="false" id="btnJogar">
+          Jogar
+        </button>
       </div>
     </main>
     <script src="script.js"></script>

@@ -54,3 +54,49 @@ header > h2 {
 input {
   margin: 20px 10px;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.card-image {
+  height: 400px;
+}
+.carta-subtitle {
+  display: inline-flex;
+  position: relative;
+  color: black;
+  font-size: 1.3rem;
+}
+.carta-subtitle.-diff1,
+.carta-subtitle.-diff2 {
+  top: -383px;
+  left: 95px;
+}
+#carta-jogador,
+#carta-maquina {
+  max-width: 300px;
+}
+@media (max-width: 678px) {
+  .wrapper {
+    flex-direction: column;
+  }
+  .card-image {
+    height: 250px;
+  }
+  .container {
+    margin: 10px;
+  }
+  main {
+    margin: 5px;
+  }
+  .carta-subtitle.-diff1,
+  .carta-subtitle.-diff2 {
+    top: -224px;
+    left: -130px;
+    font-size: 1rem;
+  }
+}
