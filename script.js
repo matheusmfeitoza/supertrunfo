@@ -57,7 +57,6 @@ function sortearCarta(){
     cartaMaquina = cartasJogadores[valorRandomMaquina];
     document.getElementById('btnSortear').disabled = true;
     document.getElementById('btnJogar').disabled = false;
-    criaAtributoNatela();
     geraCardComponents();
 }
 function geraCardComponents(){
@@ -97,7 +96,13 @@ function geraCardComponents(){
     }
 
     let nomeCardMaquina = `<p class="carta-subtitle -diff2">${cartaMaquina.nome}</p>`
-    getCardMaquina.innerHTML = moldura + nomeCardMaquina;
+
+    let opcoesTexto = ''
+    let divHtml = `<div class="optionsCards">`
+    for(let atributo in cartaJogador.atributos){
+        opcoesTexto += "<input type='radio' name='atributo' value='" + atributo + "' class='teste'>" + atributo + ": " + cartaJogador.atributos[atributo] + "<br>";
+    }
+    getCardMaquina.innerHTML = moldura + nomeCardMaquina + divHtml + opcoesTexto + "</div>";
 
     
     
@@ -106,10 +111,7 @@ function geraCardComponents(){
 function criaAtributoNatela(){
     let getAtrspace = document.getElementById('addInput');
     let opcoesTexto = '';
-    for(let atributo in cartaJogador.atributos){
-        opcoesTexto += "<input type='radio' name='atributo' value='" + atributo + "'>" + atributo
-    }
-    getAtrspace.innerHTML = opcoesTexto;
+  
 }
 
 function capturaAtributoEscolhido(){
