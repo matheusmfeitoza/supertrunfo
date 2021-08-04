@@ -89,6 +89,7 @@ input {
 @media (max-width: 678px) {
   .wrapper {
     flex-direction: column;
+    max-height: 550px;
   }
   .card-image {
     height: 250px;
@@ -104,5 +105,14 @@ input {
     top: -224px;
     left: -130px;
     font-size: 1rem;
+  }
+  .optionsCards {
+    left: 10px;
+    top: -390px;
+    font-size: 0.7rem;
+  }
+  input {
+    width: 7px;
+    margin: 7px 10px;
   }
 }
