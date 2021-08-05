@@ -19,8 +19,10 @@
         <button type="button" onclick="sortearCarta()" id="btnSortear">
           Sortear
         </button>
-        <h3>Agora escolha o seu atributo:</h3>
-        <div class="wrapper">
+        <p id="placar"></p>
+        <p id="qtdCartas"></p>
+        <h3 id="choiceAtribute"></h3>
+        <div class="wrapper" id="wrapper">
           <div>
             <div id="carta-jogador">
               <img
@@ -45,6 +47,9 @@
         <div id="addInput" class="atributoBtn"></div>
         <button type="button" onclick="jogar()" disabled="false" id="btnJogar">
           Jogar
+        </button>
+        <button id="btnNovaRodada" disabled="false" onclick="novaRodada()">
+          Nova rodada
         </button>
         <div class="resultadoFinal"></div>
       </div>

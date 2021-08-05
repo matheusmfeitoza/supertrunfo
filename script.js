@@ -42,21 +42,48 @@ let cartasJogadores = [{
         defesa: 90,
         magia: 99
     }
+},
+{
+    nome: "Summoners War",
+    imagem:"./imgs/SummonersWar.jpg",
+    atributos:{
+        ataque: 70,
+        defesa: 70,
+        magia: 90,
+    }
 }];
 let cartaJogador;
 let cartaMaquina;
+let jogadorPlacar = 0;
+let maquinaPlacar = 0;
+let qtdCartas = 0;
+
+exibirPlacar();
+
+function exibirPlacar(){
+    let getPlacar = document.getElementById('placar');
+    let getQtdCartas = document.getElementById('qtdCartas');
+    getPlacar.innerHTML = `Jogador: ${jogadorPlacar} / ${maquinaPlacar} :Máquina`
+    qtdCartas = cartasJogadores.length;
+    getQtdCartas.innerHTML = `Quantidade de cartas disponíveis: ${qtdCartas}`
+}
 
 function sortearCarta(){
+    let getChoiceAtribute = document.getElementById('choiceAtribute');
+  
     let valorRandomJogador = parseInt(Math.random() * cartasJogadores.length);
     cartaJogador = cartasJogadores[valorRandomJogador];
+    cartasJogadores.splice(valorRandomJogador,1);
     
     let valorRandomMaquina = parseInt(Math.random() * cartasJogadores.length);
-    while(valorRandomMaquina == valorRandomJogador){
-        valorRandomMaquina = parseInt(Math.random() * cartasJogadores.length);
-    }
     cartaMaquina = cartasJogadores[valorRandomMaquina];
+    cartasJogadores.splice(valorRandomMaquina,1);
+    
     document.getElementById('btnSortear').disabled = true;
     document.getElementById('btnJogar').disabled = false;
+   
+    getChoiceAtribute.innerHTML = 'Agora escolha o seu atributo:'
+
     geraCardComponents();
 }
 function geraCardComponents(){
@@ -104,15 +131,34 @@ function jogar(){
     let htmlResultado =''
         if(cartaJogador.atributos[valorAtrEscolhido] > cartaMaquina.atributos[valorAtrEscolhido]){
             htmlResultado = "<h2 class='resultado'> Venceu </h2>"
+            jogadorPlacar++
         }else if (cartaJogador.atributos[valorAtrEscolhido] < cartaMaquina.atributos[valorAtrEscolhido]){
             htmlResultado = `<h2 class="resultado"> Perdeu </h2>`
+            maquinaPlacar++
         }
         else{
             htmlResultado = `<h2 class="resultado"> Empatou </h2>`
         }
-        
         finalResult.innerHTML = htmlResultado;
+        if(cartasJogadores.length == 0){
+            alert("Acabou o game!")
+            if(jogadorPlacar > maquinaPlacar){
+                finalResult.innerHTML = `<h2 class='resultado'>Jogador ganhou!!!</h2>`
+            }else if(maquinaPlacar > jogadorPlacar){
+                finalResult.innerHTML = `<h2 class='resultado'>Máquina ganhou!!!!</h2>`
+            }else{
+                finalResult.innerHTML = `<h2 class='resultado'>Empatou!!</h2>`
+            }
+        }else{
+            document.getElementById('btnNovaRodada').disabled = true;
+        }
+        
+       
+        document.getElementById('btnSortear').disabled = true;
+        document.getElementById('btnJogar').disabled = true;
+        document.getElementById('btnNovaRodada').disabled = false;
 
+        exibirPlacar();
         exibirResultadoMaquina();
 }
 
@@ -143,4 +189,37 @@ function exibirResultadoMaquina(){
     }
     getCardMaquina.innerHTML = moldura + nomeCardMaquina + divHtml + opcoesTexto + "</div>";
 
+}
+
+function novaRodada(){
+    let getWrapper = document.querySelector('.wrapper');
+    let getFinalResult = document.querySelector('.resultadoFinal')
+    let html = `<div class="wrapper" id="wrapper">
+    <div>
+      <div id="carta-jogador">
+        <img
+          src="./imgs/card-super-trunfo-transparent-ajustado.png"
+          alt="Carta Jogador"
+          class="card-image"
+        />
+        <h3></h3>
+      </div>
+    </div>
+    <div>
+      <div id="carta-maquina">
+        <img
+          src="./imgs/card-super-trunfo-transparent-ajustado.png"
+          alt="Carta maquina"
+          class="card-image"
+        />
+        <h3></h3>
+      </div>
+    </div>
+  </div>`;
+    let htmlFinalResult = `<div class="resultadoFinal"></div>`;
+    getWrapper.innerHTML = html;
+    getFinalResult.innerHTML = htmlFinalResult;
+    let getBtnSort = document.getElementById('btnSortear').disabled = false;
+
+   
 }
